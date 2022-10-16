@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creando una Pelicula</title>
+</head>
+<body>
+    <h1>Creando una Pelicula</h1>
+    <form action="" method="post">
+    <div>
+        <label for="title">Titulo</label>
+        <input type="text" name="title" id="title">
+    </div>
+    <div>
+        <label for="rating">Rating</label>
+        <input type="number" name="rating" id="rating">
+    </div>
+    <div>
+        <label for="awards">Premios</label>
+        <input type="number" name="awards" id="awards">
+    </div>
+    <div>
+        <label for="release_date">Estreno</label>
+        <input type="date" name="release_date" id="release_date">
+    </div>
+    <div>
+        <label for="length">Duracion</label>
+        <input type="number" name="length" id="length">
+    </div>
+    <div>
+        <label for="genre">Genero</label>
+        <select name="genre" id="genre">
+            <option value=""select hidden>Seleccione un genero</option> <!-- el value esta vacio para capturarlo con express validator, y enviamos un mensaje de error -->
+            <% generos.forEach(genre => { %>
+                <option value="<%= genre.id %>"><%= genre.name %></option>
+            <% }) %>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Crear Pelicula</button>
+    </div>
+</form>
+</body>
+</html>
