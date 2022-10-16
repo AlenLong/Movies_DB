@@ -4,42 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creando una Pelicula</title>
+    <title>Editando una Pelicula</title>
 </head>
 <body>
-    <h1>Creando una Pelicula</h1>
+    <h1>Editando la Pelicula: "<%= pelicula.title %>"</h1>
     <form action="" method="post">
     <div>
         <label for="title">Titulo</label>
-        <input type="text" name="title" id="title">
+        <input type="text" name="title" id="title" value="<%= pelicula.title %>">
     </div>
     <div>
         <label for="rating">Rating</label>
-        <input type="number" name="rating" id="rating">
+        <input type="number" name="rating" id="rating" value="<%= pelicula.rating %>">
     </div>
     <div>
         <label for="awards">Premios</label>
-        <input type="number" name="awards" id="awards">
+        <input type="number" name="awards" id="awards" value="<%= pelicula.awards %>">
     </div>
     <div>
         <label for="release_date">Estreno</label>
-        <input type="datetime-local" name="release_date" id="release_date">
+        <input type="datetime-local" name="release_date" id="release_date" value="<%= pelicula.release_date %>">
     </div>
     <div>
         <label for="length">Duracion</label>
-        <input type="number" name="length" id="length">
+        <input type="number" name="length" id="length" value="<%= pelicula.length %>">
     </div>
     <div>
         <label for="genre">Genero</label>
         <select name="genre" id="genre">
-            <option value=""select hidden>Seleccione un genero</option> <!-- el value esta vacio para capturarlo con express validator, y enviamos un mensaje de error -->
+            <option value="<%= pelicula.genre_id %>" select hidden><%= pelicula.genre_id %></option> <!-- el value esta vacio para capturarlo con express validator, y enviamos un mensaje de error -->
             <% generos.forEach(genre => { %>
                 <option value="<%= genre.id %>"><%= genre.name %></option>
             <% }) %>
         </select>
     </div>
     <div>
-        <button type="submit">Crear Pelicula</button>
+        <button type="submit">Editar Pelicula</button>
     </div>
 </form>
 </body>
