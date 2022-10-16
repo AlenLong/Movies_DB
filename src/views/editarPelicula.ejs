@@ -27,12 +27,16 @@
     </div>
     <div>
         <label for="length">Duracion</label>
-        <input type="number" name="length" id="length" value="<%= pelicula.length %>">
+        <input type="number" name="length" id="length" value="<%= pelicula.length !== null ? pelicula.length : null %>">
     </div>
     <div>
         <label for="genre">Genero</label>
         <select name="genre" id="genre">
-            <option value="<%= pelicula.genre_id %>" select hidden><%= pelicula.genre_id %></option> <!-- el value esta vacio para capturarlo con express validator, y enviamos un mensaje de error -->
+            <% if (pelicula.genre_id !== null) { %>
+                <option value="<%= pelicula.genre_id %>" select hidden><%= pelicula.genre_id %></option> <!-- el value esta vacio para capturarlo con express validator, y enviamos un mensaje de error -->
+            <% }else{ %>
+                <option value=""select hidden>Seleccione un genero</option> 
+                <% } %>
             <% generos.forEach(genre => { %>
                 <option value="<%= genre.id %>"><%= genre.name %></option>
             <% }) %>

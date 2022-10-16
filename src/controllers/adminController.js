@@ -1,7 +1,21 @@
 const db = require('../database/models');
 const { Op } = require('sequelize');
+const { promiseImpl } = require('ejs');
 
 module.exports = {
+    list :(req,res) => {
+        db.Movies.findAll()
+            .then(peliculas => {
+                return res.render('listarPeliculas',{
+                    peliculas
+                })
+            }).catch((err) => {
+                res.send(err)
+            });
+    },
+
+    /* ============================ */
+
     create : (req,res) => {
         db.Genre.findAll()
             .then((generos) => {
@@ -78,17 +92,25 @@ module.exports = {
             }
         })
         .then((result) => {
-            return res.redirect('/admin/create')
+            return res.redirect('/admin/list')
         }).catch((err) =>{
             res.send(err)
         })
-        res.redirect('/admin/create')
     },
 
         /* ============================ */
 
     destroy : (req,res) => {
-        
-        res.redirect('crearPelicula')
+        let idParams = +req.params.id
+
+        db.Movies.destroy({
+            where : {
+                id : idParams
+            }
+        })
+        .then(movie => {
+            return res.redirect('admin/list')
+        })
+        .catch(err => res.send(err))
     }
 }
